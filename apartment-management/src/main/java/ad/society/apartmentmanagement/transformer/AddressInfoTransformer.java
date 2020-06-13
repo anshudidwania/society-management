@@ -1,16 +1,16 @@
-package ad.society.usermanagement.transformer;
+package ad.society.apartmentmanagement.transformer;
 
-import ad.society.usermanagement.entity.User;
-import ad.society.usermanagement.modal.AddressInfoVO;
+import ad.society.apartmentmanagement.entity.Apartment;
+import ad.society.apartmentmanagement.modal.AddressInfoVO;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 
 @Component
-public class AddressInfoTransformer implements ObjectTransformer<User.AddressInfo, AddressInfoVO>{
+public class AddressInfoTransformer implements ObjectTransformer<Apartment.AddressInfo, AddressInfoVO>{
     @Override
-    public AddressInfoVO toValueObject(User.AddressInfo entity) {
-        if (!Objects.isNull(entity)) {
+    public AddressInfoVO toValueObject(Apartment.AddressInfo entity) {
+        if(!Objects.isNull(entity)) {
             return AddressInfoVO.builder()
                     .addressLine1(entity.getAddressLine1())
                     .addressLine2(entity.getAddressLine2())
@@ -26,9 +26,9 @@ public class AddressInfoTransformer implements ObjectTransformer<User.AddressInf
     }
 
     @Override
-    public User.AddressInfo toEntity(AddressInfoVO dto) {
+    public Apartment.AddressInfo toEntity(AddressInfoVO dto) {
         if (!Objects.isNull(dto)) {
-            return User.AddressInfo.builder()
+            return Apartment.AddressInfo.builder()
                     .addressLine1(dto.getAddressLine1())
                     .addressLine2(dto.getAddressLine2())
                     .city(dto.getCity())

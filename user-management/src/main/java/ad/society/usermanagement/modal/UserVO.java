@@ -15,6 +15,7 @@ public class UserVO {
     private String userType;
     private String referenceUserId;
     private String societyId;
+    private String societyName;
     private List<String> roles;
     private List<AddressInfoVO> addressInfo;
 
