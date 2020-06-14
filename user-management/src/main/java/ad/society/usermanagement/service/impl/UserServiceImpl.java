@@ -4,6 +4,7 @@ import ad.society.usermanagement.dao.UserDAO;
 import ad.society.usermanagement.modal.ResponseVO;
 import ad.society.usermanagement.modal.UserSearchFilterVO;
 import ad.society.usermanagement.modal.UserVO;
+import ad.society.usermanagement.resource.apartment.ApartmentResource;
 import ad.society.usermanagement.service.UserService;
 import ad.society.usermanagement.transformer.UserTransformer;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,13 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Autowired
+    private ApartmentResource apartmentResource;
+
     @Override
     public UserVO getUserDetails(String userId) {
         UserVO vo = userTransformer.toValueObject(userDAO.getUserDetails(userId));
-        // create headers
+ /*       // create headers
         HttpHeaders headers = new HttpHeaders();
         headers.setBasicAuth("P1_MS_USER", "117bf42a6662e0da17ad73c7e6");
         HttpEntity request = new HttpEntity(headers);
@@ -41,6 +45,9 @@ public class UserServiceImpl implements UserService {
         ResponseVO resVO = response.getBody();
         //ResponseVO resVO = restTemplate.getForObject("http://apartment-management/society/name/" + vo.getSocietyId(), ResponseVO.class);
         vo.setSocietyName((String)resVO.getData());
+*/
+        vo.setSocietyName(apartmentResource.getSocietyName(vo.getSocietyId()));
+
         return vo;
     }
 
